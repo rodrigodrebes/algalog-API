@@ -3,9 +3,11 @@ package com.techsolutions.api.exceptionhandler;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.OffsetDateTime;
 import java.util.List;
 
-import java.time.LocalDateTime;
+
 
 @Getter
 @Setter
@@ -13,7 +15,7 @@ import java.time.LocalDateTime;
 public class Problema {
 
     private Integer status;
-    private LocalDateTime dataHora;
+    private OffsetDateTime dataHora;
     private String titulo;
     private List<Campo> campos;
 
