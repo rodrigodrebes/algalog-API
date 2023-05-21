@@ -37,6 +37,9 @@ A arquitetura da aplicação segue o padrão MVC, incluindo camadas de Modelo, R
 ### Instruções
 
 Clone o repositório e importe o projeto em sua IDE favorita.
+
 Certifique-se de ter o MySQL executando e configure as credenciais de banco de dados corretamente no arquivo application.properties.
+
 Execute o projeto. O Spring Boot irá cuidar das migrações do banco de dados usando o FlywayDB.
+
 Abra o Postman ou a ferramenta de sua escolha para testar APIs.
