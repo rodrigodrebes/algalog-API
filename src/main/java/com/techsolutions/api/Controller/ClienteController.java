@@ -1,7 +1,6 @@
 package com.techsolutions.api.Controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.techsolutions.domain.Model.Cliente;
 import com.techsolutions.domain.repository.ClienteRepository;

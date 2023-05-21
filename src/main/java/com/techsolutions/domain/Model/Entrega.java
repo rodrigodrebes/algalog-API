@@ -1,16 +1,14 @@
 package com.techsolutions.domain.Model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.techsolutions.domain.exception.NegocioException;
 import jakarta.persistence.*;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,4 +52,17 @@ public class Entrega {
         this.getOcorrencias().add(ocorrencia);
         return ocorrencia;
     }
+
+    public void finalizar() {
+        if(!podeSerFinalizada()){
+            throw new NegocioException("Entrega não pôde ser finalizada");
+        }
+
+        setStatus(StatusEntrega.FINALIZADA);
+        setDataFinalizacao(OffsetDateTime.now());
+    }
+    public boolean podeSerFinalizada(){
+        return StatusEntrega.PENDENTE.equals(getStatus());
+    }
+
 }

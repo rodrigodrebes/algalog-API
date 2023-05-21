@@ -1,7 +1,6 @@
 package com.techsolutions.api.model;
 
 import com.techsolutions.domain.Model.StatusEntrega;
-import jdk.jshell.Snippet;
 import lombok.Getter;
 import lombok.Setter;
 

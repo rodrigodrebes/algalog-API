@@ -1,15 +1,14 @@
 package com.techsolutions.api.Controller;
 
 import com.techsolutions.api.assembler.EntregaAssembler;
-import com.techsolutions.api.model.DestinatarioModel;
 import com.techsolutions.api.model.EntregaModel;
 import com.techsolutions.api.model.input.EntregaInput;
 import com.techsolutions.domain.Model.Entrega;
 import com.techsolutions.domain.repository.EntregaRepository;
+import com.techsolutions.domain.service.FinalizacaoEntregaService;
 import com.techsolutions.domain.service.SolicitacaoEntregaService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +20,7 @@ import java.util.List;
 @RequestMapping("/entregas")
 public class EntregaController {
 
+    private FinalizacaoEntregaService finalizacaoEntregaService;
     private EntregaRepository entregaRepository;
     private SolicitacaoEntregaService solicitacaoEntregaService;
     private EntregaAssembler entregaAssembler;
@@ -32,7 +32,12 @@ public class EntregaController {
         Entrega entregaSolicitada = solicitacaoEntregaService.solicitar(novaEntrega);
         return entregaAssembler.toModel(entregaSolicitada);
     }
+    @PutMapping("/{entregaId}/finalizacao")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void finalizar(@PathVariable Long entregaId){
+        finalizacaoEntregaService.finalizar(entregaId);
 
+    }
     @GetMapping
     public List<EntregaModel> listar(){
         return entregaAssembler.toCollectionModel(entregaRepository.findAll());
